@@ -3,8 +3,7 @@
  * Copyright (c) 2017 liangxie
  * 
  * http://liangxiegame.com
- * https://github.com/liangxiegame/QFramework
- * https://github.com/SnowCold/SCFramework_Engine
+ * https://github.com/liangxiegame/QSingleton
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +23,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
 ****************************************************************************/
-
 
 namespace QFramework 
 {	
