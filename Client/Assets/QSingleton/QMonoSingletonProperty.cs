@@ -25,13 +25,10 @@
  * THE SOFTWARE.
 ****************************************************************************/
 
-using UnityEngine;
-
-/// <summary>
-/// 需要使用属性器方式实现Unity生命周期的单例模式
-/// </summary>
 namespace QFramework 
 {
+	using UnityEngine;
+
 	public abstract class QMonoSingletonProperty<T> where T : MonoBehaviour,ISingleton
 	{
 		protected static T mInstance = null;

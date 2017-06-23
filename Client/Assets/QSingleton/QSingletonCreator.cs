@@ -41,9 +41,7 @@ namespace QFramework
 			}
 
 			T retInstance = default(T);
-			// 先获取所有非public的构造方法
 			ConstructorInfo[] ctors = typeof(T).GetConstructors (BindingFlags.Instance | BindingFlags.NonPublic);
-			// 从ctors中获取无参的构造方法
 			ConstructorInfo ctor = Array.Find (ctors, c => c.GetParameters ().Length == 0);
 
 			if (ctor == null) 

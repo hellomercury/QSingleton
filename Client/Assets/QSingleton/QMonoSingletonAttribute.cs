@@ -25,10 +25,10 @@
  * THE SOFTWARE.
 ****************************************************************************/
 
-using System;
-
 namespace QFramework
 {
+    using System;
+
     [AttributeUsage(AttributeTargets.Class)]
     public class QMonoSingletonAttribute : Attribute
     {
