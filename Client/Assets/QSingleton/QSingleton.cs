@@ -41,7 +41,8 @@ namespace QFramework
 			{
 				lock (mLock) 
 				{
-					if (mInstance == null) {
+					if (mInstance == null) 
+					{
 						mInstance = QSingletonCreator.CreateSingleton<T> ();
 					}
 				}

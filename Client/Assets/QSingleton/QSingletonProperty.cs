@@ -29,15 +29,20 @@ namespace QFramework
 	public class QSingletonProperty<T> where T : class,ISingleton
 	{
 		protected static T mInstance = null;
+		static object mLock = new object();
 
 		public static T Instance
 		{
 			get 
 			{
-				if (null == mInstance) 
+				lock (mLock)
 				{
-					mInstance = QSingletonCreator.CreateSingleton<T>();
+					if (mInstance == null) 
+					{
+						mInstance = QSingletonCreator.CreateSingleton<T>();
+					}
 				}
+
 				return mInstance;
 			}
 		}
