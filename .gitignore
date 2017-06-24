@@ -1,2 +1,11 @@
 Client/Library
 Client.sln
+Client/Assets/Plugins/Editor/JetBrains.meta
+Client/Assets/Plugins/Editor/JetBrains/Unity3DRider.cs
+Client/Assets/Plugins/Editor/JetBrains/Unity3DRider.cs.meta
+Client/.idea/.idea.Client/riderModule.iml
+Client/.idea/.idea.Client/.idea/contentModel.xml
+Client/.idea/.idea.Client/.idea/modules.xml
+Client/.idea/.idea.Client/.idea/workspace.xml
+Client/Assets/Plugins.meta
+Editor.meta

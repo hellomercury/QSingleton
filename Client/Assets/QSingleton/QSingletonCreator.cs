@@ -34,12 +34,8 @@ namespace QFramework
     {		
 		public static T CreateSingleton<T>() where T : class,ISingleton
 		{
-			if (!Application.isPlaying)
-			{
-				return null;
-			}
-
 			T retInstance = default(T);
+			
 			ConstructorInfo[] ctors = typeof(T).GetConstructors (BindingFlags.Instance | BindingFlags.NonPublic);
 			ConstructorInfo ctor = Array.Find (ctors, c => c.GetParameters ().Length == 0);
 
@@ -60,11 +56,6 @@ namespace QFramework
 
         public static T CreateMonoSingleton<T>() where T : MonoBehaviour, ISingleton
         {
-			if (!Application.isPlaying)
-            {
-                return null;
-            }
-
             T instance = null;
 
 			if (instance == null && Application.isPlaying)
