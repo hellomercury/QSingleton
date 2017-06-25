@@ -47,6 +47,7 @@ namespace QFramework
 			
 		public static void Dispose()
 		{
+			GameObject.Destroy(mInstance.gameObject);
 			mInstance = null;
 		}
 	}
