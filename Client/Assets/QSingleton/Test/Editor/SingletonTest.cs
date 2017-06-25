@@ -1,21 +1,64 @@
-﻿using UnityEngine;
-using UnityEditor;
-using NUnit.Framework;
+﻿/****************************************************************************
+ * Copyright (c) 2017 liangxie
+ * 
+ * http://liangxiegame.com
+ * https://github.com/liangxiegame/QSingleton
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+****************************************************************************/
 
-public class MonoSingletonTest {
+namespace QFramework.Test
+{
+	using NUnit.Framework;
+	using QFramework;
+	
+	public class QSingletonTest
+	{
+		class SingletonTest : QSingleton<SingletonTest>
+		{
+			public static int InstanceCount = 0;
+			
+			public override void OnSingletonInit()
+			{
+				base.OnSingletonInit();
+				InstanceCount++;
+			}
 
-	[Test]
-	public void EditorTest() {
-		//Arrange
-		var gameObject = new GameObject();
+			public override void Dispose()
+			{
+				base.Dispose();
+				InstanceCount--;
+			}
+		}
+		
+		[Test]
+		public void TestSingleton()
+		{
+			var instance = SingletonTest.Instance;
 
-		//Act
-		//Try to rename the GameObject
-		var newGameObjectName = "My game object";
-		gameObject.name = newGameObjectName;
-
-		//Assert
-		//The object has a new name
-		Assert.AreEqual(newGameObjectName, gameObject.name);
+			instance = SingletonTest.Instance;
+			
+			Assert.AreEqual(SingletonTest.InstanceCount,1);
+			
+			instance.Dispose();
+			
+			Assert.AreEqual(SingletonTest.InstanceCount,0);
+		}
 	}
 }
