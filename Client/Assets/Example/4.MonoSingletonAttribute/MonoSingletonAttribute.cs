@@ -27,47 +27,17 @@ namespace QFramework.Example
 {
 	using UnityEngine;
 
-	class Class2SignetonProperty : ISingleton
+	[QMonoSingletonAttribute("[Example]/QMonoSingeltonAttribute")]
+	class Class2MonoSingletonAttribute : QMonoSingleton<Class2MonoSingletonAttribute>
 	{
-		public static Class2SignetonProperty Instance
-		{
-			get { return QSingletonProperty<Class2SignetonProperty>.Instance; }
-		}
-
-		private Class2SignetonProperty() {}
 		
-		private static int mIndex = 0;
-
-		public void OnSingletonInit()
-		{
-			mIndex++;
-		}
-
-		public void Dispose()
-		{
-			QSingletonProperty<Class2SignetonProperty>.Dispose();
-		}
-		
-		public void Log(string content)
-		{
-			Debug.Log("Class2SingletonProperty" + mIndex + ":" + content);
-		}
 	}
 	
-		
-	public class SingletonProperty : MonoBehaviour
+	public class MonoSingletonAttribute : MonoBehaviour
 	{
-		// Use this for initialization
-		void Start () 
+		private void Start()
 		{
-			Class2SignetonProperty.Instance.Log("Hello World!");	
-			
-			// delete current instance
-			Class2SignetonProperty.Instance.Dispose();
-			
-			// new instance
-			Class2SignetonProperty.Instance.Log("Hello World!");
+			var intance = Class2MonoSingletonAttribute.Instance;
 		}
-	
 	}
 }

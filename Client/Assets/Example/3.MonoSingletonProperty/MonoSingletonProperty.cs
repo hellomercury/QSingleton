@@ -25,49 +25,53 @@
 
 namespace QFramework.Example
 {
+	using System.Collections;
 	using UnityEngine;
-
-	class Class2SignetonProperty : ISingleton
+	
+	class Class2MonoSingletonProperty : MonoBehaviour,ISingleton
 	{
-		public static Class2SignetonProperty Instance
+		public static Class2MonoSingletonProperty Instance
 		{
-			get { return QSingletonProperty<Class2SignetonProperty>.Instance; }
+			get { return QMonoSingletonProperty<Class2MonoSingletonProperty>.Instance; }
 		}
-
-		private Class2SignetonProperty() {}
 		
-		private static int mIndex = 0;
-
-		public void OnSingletonInit()
-		{
-			mIndex++;
-		}
-
 		public void Dispose()
 		{
-			QSingletonProperty<Class2SignetonProperty>.Dispose();
+			QMonoSingletonProperty<Class2MonoSingletonProperty>.Dispose();
 		}
 		
-		public void Log(string content)
+		public void OnSingletonInit()
 		{
-			Debug.Log("Class2SingletonProperty" + mIndex + ":" + content);
+			Debug.Log(this.name + ":" + "OnSingletonInit");
+		}
+
+
+
+		private void Awake()
+		{
+			Debug.Log(this.name + ":" + "Awake");
+		}
+
+		private void Start()
+		{
+			Debug.Log(this.name + ":" + "Start");
+		}
+
+		protected void OnDestroy()
+		{
+			Debug.Log(this.name + ":" + "OnDestroy");
 		}
 	}
-	
-		
-	public class SingletonProperty : MonoBehaviour
+
+	public class MonoSingletonProperty : MonoBehaviour
 	{
-		// Use this for initialization
-		void Start () 
+		private IEnumerator Start()
 		{
-			Class2SignetonProperty.Instance.Log("Hello World!");	
+			var instance = Class2MonoSingletonProperty.Instance;
+
+			yield return new WaitForSeconds(3.0f);
 			
-			// delete current instance
-			Class2SignetonProperty.Instance.Dispose();
-			
-			// new instance
-			Class2SignetonProperty.Instance.Log("Hello World!");
+			instance.Dispose();
 		}
-	
 	}
 }
