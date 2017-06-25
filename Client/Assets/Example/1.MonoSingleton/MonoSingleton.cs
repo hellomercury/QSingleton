@@ -57,11 +57,11 @@ namespace QFramework.Example
 	{
 		private IEnumerator Start()
 		{
-			Debug.Log(Class2MonoSingleton.Instance.name);
+			var instance = Class2MonoSingleton.Instance;
 
 			yield return new WaitForSeconds(3.0f);
 			
-			Class2MonoSingleton.Instance.Dispose();
+			instance.Dispose();
 		}
 	}
 }

@@ -1,5 +1,4 @@
 ﻿/****************************************************************************
- * Copyright (c) 2017 snowcold
  * Copyright (c) 2017 liangxie
  * 
  * http://liangxiegame.com
@@ -24,41 +23,49 @@
  * THE SOFTWARE.
 ****************************************************************************/
 
-
-namespace QFramework 
+namespace QFramework.Example
 {
 	using UnityEngine;
 
-	public abstract class QMonoSingleton<T> : MonoBehaviour,ISingleton where T : QMonoSingleton<T>
+	class Class2SignetonProperty : ISingleton
 	{
-		protected static T mInstance = null;
-
-		public static T Instance
+		public static Class2SignetonProperty Instance
 		{
-			get 
-			{
-				if (null == mInstance) 
-				{
-					mInstance = QSingletonCreator.CreateMonoSingleton<T> ();
-				}
-
-				return mInstance;
-			}
+			get { return QSingletonProperty<Class2SignetonProperty>.Instance; }
 		}
 
-		public virtual void OnSingletonInit()
-		{
+		private Class2SignetonProperty() {}
+		
+		private static int mIndex = 0;
 
+		public void OnSingletonInit()
+		{
+			mIndex++;
 		}
 
 		public void Dispose()
 		{
-			Destroy(gameObject);
+			QSingletonProperty<Class2SignetonProperty>.Dispose();
 		}
 		
-		protected virtual void OnDestroy()
+		public void Log(string content)
 		{
-			mInstance = null;
+			Debug.Log("Class2SingletonProperty" + mIndex + ":" + content);
 		}
+	}
+	
+		
+	public class SingletonProperty : MonoBehaviour
+	{
+		// Use this for initialization
+		void Start () 
+		{
+			Class2SignetonProperty.Instance.Log("Hello World!");	
+			
+			Class2SignetonProperty.Instance.Dispose();
+			
+			Class2SignetonProperty.Instance.Log("Hello World!");
+		}
+	
 	}
 }

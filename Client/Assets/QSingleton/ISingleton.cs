@@ -26,7 +26,9 @@
 
 namespace QFramework
 {
-    public interface ISingleton
+    using System;
+    
+    public interface ISingleton : IDisposable
     {
         void OnSingletonInit();
     }
