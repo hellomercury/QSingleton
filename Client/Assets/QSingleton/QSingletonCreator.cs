@@ -31,30 +31,29 @@ namespace QFramework
 	using System.Reflection;
 	
     public class QSingletonCreator
-    {		
-		public static T CreateSingleton<T>() where T : class,ISingleton
-		{
-			T retInstance = default(T);
-			
-			ConstructorInfo[] ctors = typeof(T).GetConstructors (BindingFlags.Instance | BindingFlags.NonPublic);
-			ConstructorInfo ctor = Array.Find (ctors, c => c.GetParameters ().Length == 0);
+    {
+	    public static T CreateSingleton<T>() where T : class, ISingleton
+	    {
+		    T retInstance = default(T);
 
-			if (ctor == null) 
-			{
-				Debug.LogWarning ("Non-public ctor() not found!");
-				ctors = typeof(T).GetConstructors (BindingFlags.Instance | BindingFlags.Public);
-				ctor = Array.Find (ctors, c => c.GetParameters ().Length == 0);
-			} 
+		    ConstructorInfo[] ctors = typeof(T).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic);
+		    ConstructorInfo ctor = Array.Find(ctors, c => c.GetParameters().Length == 0);
 
-			retInstance = ctor.Invoke (null) as T;
+		    if (ctor == null)
+		    {
+			    Debug.LogWarning("Non-public ctor() not found!");
+			    ctors = typeof(T).GetConstructors(BindingFlags.Instance | BindingFlags.Public);
+			    ctor = Array.Find(ctors, c => c.GetParameters().Length == 0);
+		    }
 
-			retInstance.OnSingletonInit ();
+		    retInstance = ctor.Invoke(null) as T;
 
-			return retInstance;
-		}
+		    retInstance.OnSingletonInit();
 
+		    return retInstance;
+	    }
 
-        public static T CreateMonoSingleton<T>() where T : MonoBehaviour, ISingleton
+	    public static T CreateMonoSingleton<T>() where T : MonoBehaviour, ISingleton
         {
             T instance = null;
 

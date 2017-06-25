@@ -51,7 +51,7 @@ namespace QFramework
 
 		}
 
-		public void Dispose()
+		public virtual void Dispose()
 		{
 			Destroy(gameObject);
 		}

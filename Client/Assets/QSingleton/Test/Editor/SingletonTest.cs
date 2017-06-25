@@ -33,7 +33,11 @@ namespace QFramework.Test
 		class SingletonTest : QSingleton<SingletonTest>
 		{
 			public static int InstanceCount = 0;
-			
+
+			private SingletonTest()
+			{
+			}
+
 			public override void OnSingletonInit()
 			{
 				base.OnSingletonInit();
@@ -48,17 +52,41 @@ namespace QFramework.Test
 		}
 		
 		[Test]
-		public void TestSingleton()
+		public void TestQSingleton()
 		{
 			var instance = SingletonTest.Instance;
 
 			instance = SingletonTest.Instance;
 			
-			Assert.AreEqual(SingletonTest.InstanceCount,1);
+			Assert.AreEqual(1,SingletonTest.InstanceCount);
 			
 			instance.Dispose();
 			
-			Assert.AreEqual(SingletonTest.InstanceCount,0);
+			Assert.AreEqual(0,SingletonTest.InstanceCount);
+		}
+
+		class MonoSingletonTest : QMonoSingleton<MonoSingletonTest>
+		{
+			public static int InstanceCount = 0;
+
+			private MonoSingletonTest()
+			{
+				InstanceCount++;
+			}
+
+
+			public override void Dispose()
+			{
+				base.Dispose();
+				InstanceCount--;
+			}
+		}
+
+		[Test]
+		public void TestQMonoSingleton()
+		{
+			// filterd by Application.isPlaying value
+			Assert.IsTrue(null == MonoSingletonTest.Instance );			
 		}
 	}
 }
