@@ -1,4 +1,5 @@
 ﻿/****************************************************************************
+ * Copyright (c) 2017 snowcold
  * Copyright (c) 2017 liangxie
  * 
  * http://liangxiegame.com
@@ -23,35 +24,38 @@
  * THE SOFTWARE.
 ****************************************************************************/
 
+using UnityEngine;
+
 namespace QFramework.Example
 {
-    using UnityEngine;
-    using QFramework;
+	class Class2Singleton :QSingleton<Class2Singleton>
+	{
+		private static int mIndex = 0;
 
-    [QMonoSingletonAttribute("[Audio]/AudioManager")]
-    class AudioManager : MonoBehaviour,ISingleton
-    {
-        public static AudioManager Instance
-        {
-            get { return QMonoSingletonProperty<AudioManager>.Instance; }
-        }
+		private Class2Singleton() {}
 
-        public void OnSingletonInit()
-        {
-            Debug.Log("AudioManager Singleton Init");
-        }
+		public override void OnSingletonInit()
+		{
+			mIndex++;
+		}
 
-        public void PlayAudio(string audioName)
-        {
-            Debug.Log("Play Audio:" + audioName);
-        }
-    }
-    
-    public class Example : MonoBehaviour
-    {
-        private void Awake()
-        {
-            AudioManager.Instance.PlayAudio("audio");
-        }
-    }
+		public void Log(string content)
+		{
+			Debug.Log("Class2Singleton" + mIndex + ":" + content);
+		}
+	}
+	
+	public class Singleton : MonoBehaviour
+	{
+		private void Start()
+		{
+			Class2Singleton.Instance.Log("Hello World!");
+			
+			// delete instance
+			Class2Singleton.Instance.Dispose();
+			
+			// a differente instance
+			Class2Singleton.Instance.Log("Hello World!");
+		}
+	}
 }
