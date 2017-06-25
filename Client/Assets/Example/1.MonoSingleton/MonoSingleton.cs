@@ -25,36 +25,43 @@
 
 namespace QFramework.Example
 {
+	using System.Collections;
 	using UnityEngine;
-
-	class Class2Singleton : QSingleton<Class2Singleton>
+	
+	class Class2MonoSingleton : QMonoSingleton<Class2MonoSingleton>
 	{
-		private static int mIndex = 0;
-
-		private Class2Singleton() {}
-
 		public override void OnSingletonInit()
 		{
-			mIndex++;
+			Debug.Log(this.name + ":" + "OnSingletonInit");
 		}
 
-		public void Log(string content)
+		private void Awake()
 		{
-			Debug.Log("Class2Singleton" + mIndex + ":" + content);
+			Debug.Log(this.name + ":" + "Awake");
 		}
-	}
-	
-	public class Singleton : MonoBehaviour
-	{
+
 		private void Start()
 		{
-			Class2Singleton.Instance.Log("Hello World!");
+			Debug.Log(this.name + ":" + "Start");
+		}
+
+		protected override void OnDestroy()
+		{
+			base.OnDestroy();
 			
-			// delete instance
-			Class2Singleton.Instance.Dispose();
+			Debug.Log(this.name + ":" + "OnDestroy");
+		}
+	}
+
+	public class MonoSingleton : MonoBehaviour
+	{
+		private IEnumerator Start()
+		{
+			Debug.Log(Class2MonoSingleton.Instance.name);
+
+			yield return new WaitForSeconds(3.0f);
 			
-			// a differente instance
-			Class2Singleton.Instance.Log("Hello World!");
+			Class2MonoSingleton.Instance.Dispose();
 		}
 	}
 }

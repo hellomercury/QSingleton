@@ -49,6 +49,11 @@ namespace QFramework
 
 		}
 
+		public void Dispose()
+		{
+			Destroy(gameObject);
+		}
+		
 		protected virtual void OnDestroy()
 		{
 			mInstance = null;
