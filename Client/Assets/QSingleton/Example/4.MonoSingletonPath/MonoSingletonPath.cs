@@ -27,17 +27,17 @@ namespace QFramework.Example
 {
 	using UnityEngine;
 
-	[QMonoSingletonAttribute("[Example]/QMonoSingeltonAttribute")]
-	class Class2MonoSingletonAttribute : QMonoSingleton<Class2MonoSingletonAttribute>
+	[QMonoSingletonPath("[Example]/QMonoSingeltonPath")]
+	class ClassUseMonoSingletonPath : QMonoSingleton<ClassUseMonoSingletonPath>
 	{
 		
 	}
 	
-	public class MonoSingletonAttribute : MonoBehaviour
+	public class MonoSingletonPath : MonoBehaviour
 	{
 		private void Start()
 		{
-			var intance = Class2MonoSingletonAttribute.Instance;
+			var intance = ClassUseMonoSingletonPath.Instance;
 		}
 	}
 }

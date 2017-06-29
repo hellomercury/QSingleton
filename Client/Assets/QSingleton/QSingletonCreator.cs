@@ -32,6 +32,7 @@ namespace QFramework
 	
     public class QSingletonCreator
     {
+	    
 	    public static T CreateSingleton<T>() where T : class, ISingleton
 	    {
 		    T retInstance = default(T);
@@ -45,6 +46,7 @@ namespace QFramework
 			    ctors = typeof(T).GetConstructors(BindingFlags.Instance | BindingFlags.Public);
 			    ctor = Array.Find(ctors, c => c.GetParameters().Length == 0);
 		    }
+		    
 
 		    retInstance = ctor.Invoke(null) as T;
 
@@ -66,7 +68,7 @@ namespace QFramework
                     object[] attributes = info.GetCustomAttributes(true);
                     for (int i = 0; i < attributes.Length; ++i)
                     {
-                        QMonoSingletonAttribute defineAttri = attributes[i] as QMonoSingletonAttribute;
+                        QMonoSingletonPath defineAttri = attributes[i] as QMonoSingletonPath;
                         if (defineAttri == null)
                         {
                             continue;

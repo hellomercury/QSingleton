@@ -23,6 +23,8 @@
  * THE SOFTWARE.
 ****************************************************************************/
 
+using UnityEngine;
+
 namespace QFramework.Test
 {
 	using NUnit.Framework;
@@ -65,6 +67,8 @@ namespace QFramework.Test
 			Assert.AreEqual(0,SingletonTest.InstanceCount);
 		}
 
+		
+		[QMonoSingletonPath("[Mono]/MonoSingleton")]
 		class MonoSingletonTest : QMonoSingleton<MonoSingletonTest>
 		{
 			public static int InstanceCount = 0;
@@ -85,8 +89,10 @@ namespace QFramework.Test
 		[Test]
 		public void TestQMonoSingleton()
 		{
-			// filterd by Application.isPlaying value
-			Assert.IsTrue(null == MonoSingletonTest.Instance );			
+			Assert.IsTrue(MonoSingletonTest.Instance == null);
+			// Application.isPlaying can't used in editor test mode
+//			Assert.IsTrue(string.Equals(MonoSingletonTest.Instance.name,"MonoSingleton"));
+//			Assert.IsTrue(string.Equals(MonoSingletonTest.Instance.transform.parent,"[Mono]"));
 		}
 	}
 }

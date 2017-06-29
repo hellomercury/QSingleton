@@ -28,15 +28,12 @@ namespace QFramework
 {
     using System;
 
-    /// <summary>
-    /// TODO: this class name not proper.QMonoSingletonPath or other is better,but this class is used in QFramework...
-    /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class QMonoSingletonAttribute : Attribute
+    public class QMonoSingletonPath : Attribute
     {
 		private string mAbsolutePath;
 
-        public QMonoSingletonAttribute(string relativePath)
+        public QMonoSingletonPath(string relativePath)
         {
             mAbsolutePath = relativePath;
         }
@@ -44,6 +41,15 @@ namespace QFramework
         public string AbsolutePath
         {
             get { return mAbsolutePath; }
+        }
+    }
+    
+    [Obsolete("QMonoSingletonAttribute is deprecated.prease use QMonoSingletonPath instead")]
+    [AttributeUsage(AttributeTargets.Class)]
+    public class QMonoSingletonAttribuite : QMonoSingletonPath
+    {
+        public QMonoSingletonAttribuite(string relativePath) : base(relativePath)
+        {
         }
     }
 }
