@@ -46,9 +46,9 @@ namespace QFramework
     
     [Obsolete("QMonoSingletonAttribute is deprecated.prease use QMonoSingletonPath instead")]
     [AttributeUsage(AttributeTargets.Class)]
-    public class QMonoSingletonAttribuite : QMonoSingletonPath
+    public class QMonoSingletonAttribute : QMonoSingletonPath
     {
-        public QMonoSingletonAttribuite(string relativePath) : base(relativePath)
+        public QMonoSingletonAttribute(string relativePath) : base(relativePath)
         {
         }
     }

@@ -32,7 +32,6 @@ namespace QFramework
 	
     public class QSingletonCreator
     {
-	    
 	    public static T CreateSingleton<T>() where T : class, ISingleton
 	    {
 		    T retInstance = default(T);
@@ -42,11 +41,8 @@ namespace QFramework
 
 		    if (ctor == null)
 		    {
-			    Debug.LogWarning("Non-public ctor() not found!");
-			    ctors = typeof(T).GetConstructors(BindingFlags.Instance | BindingFlags.Public);
-			    ctor = Array.Find(ctors, c => c.GetParameters().Length == 0);
-		    }
-		    
+			    throw new Exception("Non-public ctor() not found! in " + typeof(T));
+		    }		    
 
 		    retInstance = ctor.Invoke(null) as T;
 
