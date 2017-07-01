@@ -53,7 +53,6 @@ namespace QFramework.Example
 			Debug.Log("Class2SingletonProperty" + mIndex + ":" + content);
 		}
 	}
-	
 		
 	public class SingletonProperty : MonoBehaviour
 	{
@@ -68,6 +67,5 @@ namespace QFramework.Example
 			// new instance
 			Class2SignetonProperty.Instance.Log("Hello World!");
 		}
-	
 	}
 }

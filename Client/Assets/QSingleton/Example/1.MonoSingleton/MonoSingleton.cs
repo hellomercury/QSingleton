@@ -32,24 +32,24 @@ namespace QFramework.Example
 	{
 		public override void OnSingletonInit()
 		{
-			Debug.Log(this.name + ":" + "OnSingletonInit");
+			Debug.Log(name + ":" + "OnSingletonInit");
 		}
 
 		private void Awake()
 		{
-			Debug.Log(this.name + ":" + "Awake");
+			Debug.Log(name + ":" + "Awake");
 		}
 
 		private void Start()
 		{
-			Debug.Log(this.name + ":" + "Start");
+			Debug.Log(name + ":" + "Start");
 		}
 
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
 			
-			Debug.Log(this.name + ":" + "OnDestroy");
+			Debug.Log(name + ":" + "OnDestroy");
 		}
 	}
 

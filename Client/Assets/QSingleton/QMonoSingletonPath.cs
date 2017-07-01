@@ -1,5 +1,4 @@
 ﻿/****************************************************************************
- * Copyright (c) 2017 snowcold
  * Copyright (c) 2017 liangxie
  * 
  * http://liangxiegame.com
