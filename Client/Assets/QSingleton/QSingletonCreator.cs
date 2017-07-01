@@ -70,7 +70,7 @@ namespace QFramework
                         {
                             continue;
                         }
-                        instance = CreateComponentOnGameObject<T>(defineAttri.AbsolutePath, true);
+                        instance = CreateComponentOnGameObject<T>(defineAttri.PathInHierarchy, true);
                         break;
                     }
 

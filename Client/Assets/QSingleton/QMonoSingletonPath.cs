@@ -30,16 +30,16 @@ namespace QFramework
     [AttributeUsage(AttributeTargets.Class)]
     public class QMonoSingletonPath : Attribute
     {
-		private string mAbsolutePath;
+		private string mPathInHierarchy;
 
-        public QMonoSingletonPath(string relativePath)
+        public QMonoSingletonPath(string pathInHierarchy)
         {
-            mAbsolutePath = relativePath;
+            mPathInHierarchy = pathInHierarchy;
         }
 
-        public string AbsolutePath
+        public string PathInHierarchy
         {
-            get { return mAbsolutePath; }
+            get { return mPathInHierarchy; }
         }
     }
     
@@ -47,7 +47,7 @@ namespace QFramework
     [AttributeUsage(AttributeTargets.Class)]
     public class QMonoSingletonAttribute : QMonoSingletonPath
     {
-        public QMonoSingletonAttribute(string relativePath) : base(relativePath)
+        public QMonoSingletonAttribute(string pathInHierarchy) : base(pathInHierarchy)
         {
         }
     }
