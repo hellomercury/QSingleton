@@ -25,51 +25,46 @@
 
 namespace QFramework.Example
 {
-	using System.Collections;
-	using UnityEngine;
-	
-	class Class2MonoSingletonProperty : MonoBehaviour,ISingleton
-	{
-		public static Class2MonoSingletonProperty Instance
-		{
-			get { return QMonoSingletonProperty<Class2MonoSingletonProperty>.Instance; }
-		}
+    using System;
+
+    [QMonoSingletonPath("[Game]/GameManager")]
+    public class GameManager : ManagerBase,ISingleton
+    {
+        public static GameManager Instance
+        {
+            get { return QMonoSingletonProperty<GameManager>.Instance; }
+        }
 		
-		public void Dispose()
-		{
-			QMonoSingletonProperty<Class2MonoSingletonProperty>.Dispose();
-		}
-		
-		public void OnSingletonInit()
-		{
-			Debug.Log(name + ":" + "OnSingletonInit");
-		}
-
-		private void Awake()
-		{
-			Debug.Log(name + ":" + "Awake");
-		}
-
-		private void Start()
-		{
-			Debug.Log(name + ":" + "Start");
-		}
-
-		protected void OnDestroy()
-		{
-			Debug.Log(name + ":" + "OnDestroy");
-		}
-	}
-
-	public class MonoSingletonProperty : MonoBehaviour
-	{
-		private IEnumerator Start()
-		{
-			var instance = Class2MonoSingletonProperty.Instance;
-
-			yield return new WaitForSeconds(3.0f);
+        public void OnSingletonInit()
+        {
 			
-			instance.Dispose();
-		}
-	}
+        }
+
+        public void Dispose()
+        {
+            QMonoSingletonProperty<GameManager>.Dispose();
+        }
+
+        public void GameStart()
+        {
+            
+        }
+
+        public void Pause()
+        {
+            
+        }
+
+        public void Resume()
+        {
+            
+        }
+
+        public void GameOver()
+        {
+            
+        }
+       
+    }
 }
+

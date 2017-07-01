@@ -25,51 +25,40 @@
 
 namespace QFramework.Example
 {
-	using System.Collections;
-	using UnityEngine;
-	
-	class Class2MonoSingletonProperty : MonoBehaviour,ISingleton
+	using System;
+
+	[QMonoSingletonPath("[Event]/EventManager")]
+	public class EventManager : ManagerBase,ISingleton
 	{
-		public static Class2MonoSingletonProperty Instance
+		public static EventManager Instance
 		{
-			get { return QMonoSingletonProperty<Class2MonoSingletonProperty>.Instance; }
-		}
-		
-		public void Dispose()
-		{
-			QMonoSingletonProperty<Class2MonoSingletonProperty>.Dispose();
+			get { return QMonoSingletonProperty<EventManager>.Instance; }
 		}
 		
 		public void OnSingletonInit()
 		{
-			Debug.Log(name + ":" + "OnSingletonInit");
-		}
-
-		private void Awake()
-		{
-			Debug.Log(name + ":" + "Awake");
-		}
-
-		private void Start()
-		{
-			Debug.Log(name + ":" + "Start");
-		}
-
-		protected void OnDestroy()
-		{
-			Debug.Log(name + ":" + "OnDestroy");
-		}
-	}
-
-	public class MonoSingletonProperty : MonoBehaviour
-	{
-		private IEnumerator Start()
-		{
-			var instance = Class2MonoSingletonProperty.Instance;
-
-			yield return new WaitForSeconds(3.0f);
 			
-			instance.Dispose();
+		}
+
+		public void Dispose()
+		{
+			QMonoSingletonProperty<EventManager>.Dispose();
+		}
+
+		public void RegisterEvent<T>(string key, Action<T> onEvent)
+		{
+			
+		}
+
+		public void UnRegisterEvent<T>(string key, Action<T> onEvent)
+		{
+			
+		}
+
+		public void SendEvent<T>(string key, T param)
+		{
+			
 		}
 	}
 }
+

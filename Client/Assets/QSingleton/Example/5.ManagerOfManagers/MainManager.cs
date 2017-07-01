@@ -25,51 +25,29 @@
 
 namespace QFramework.Example
 {
-	using System.Collections;
-	using UnityEngine;
-	
-	class Class2MonoSingletonProperty : MonoBehaviour,ISingleton
+	[QMonoSingletonPath("[Main]/MainManager")]
+	public class MainManager : ManagerBase,ISingleton
 	{
-		public static Class2MonoSingletonProperty Instance
+		public static MainManager Instance
 		{
-			get { return QMonoSingletonProperty<Class2MonoSingletonProperty>.Instance; }
-		}
-		
-		public void Dispose()
-		{
-			QMonoSingletonProperty<Class2MonoSingletonProperty>.Dispose();
+			get { return QMonoSingletonProperty<MainManager>.Instance; }
 		}
 		
 		public void OnSingletonInit()
 		{
-			Debug.Log(name + ":" + "OnSingletonInit");
-		}
-
-		private void Awake()
-		{
-			Debug.Log(name + ":" + "Awake");
-		}
-
-		private void Start()
-		{
-			Debug.Log(name + ":" + "Start");
-		}
-
-		protected void OnDestroy()
-		{
-			Debug.Log(name + ":" + "OnDestroy");
-		}
-	}
-
-	public class MonoSingletonProperty : MonoBehaviour
-	{
-		private IEnumerator Start()
-		{
-			var instance = Class2MonoSingletonProperty.Instance;
-
-			yield return new WaitForSeconds(3.0f);
 			
-			instance.Dispose();
+		}
+
+		public void Dispose()
+		{
+			QMonoSingletonProperty<MainManager>.Dispose();
+		}
+
+
+		public void Enter()
+		{
+			
 		}
 	}
 }
+

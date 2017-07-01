@@ -25,51 +25,20 @@
 
 namespace QFramework.Example
 {
-	using System.Collections;
 	using UnityEngine;
-	
-	class Class2MonoSingletonProperty : MonoBehaviour,ISingleton
+
+	public class ManagerOfManagers : MonoBehaviour
 	{
-		public static Class2MonoSingletonProperty Instance
-		{
-			get { return QMonoSingletonProperty<Class2MonoSingletonProperty>.Instance; }
-		}
-		
-		public void Dispose()
-		{
-			QMonoSingletonProperty<Class2MonoSingletonProperty>.Dispose();
-		}
-		
-		public void OnSingletonInit()
-		{
-			Debug.Log(name + ":" + "OnSingletonInit");
-		}
-
-		private void Awake()
-		{
-			Debug.Log(name + ":" + "Awake");
-		}
-
 		private void Start()
 		{
-			Debug.Log(name + ":" + "Start");
-		}
-
-		protected void OnDestroy()
-		{
-			Debug.Log(name + ":" + "OnDestroy");
-		}
-	}
-
-	public class MonoSingletonProperty : MonoBehaviour
-	{
-		private IEnumerator Start()
-		{
-			var instance = Class2MonoSingletonProperty.Instance;
-
-			yield return new WaitForSeconds(3.0f);
-			
-			instance.Dispose();
+			MainManager.Instance.Enter();
+			EventManager.Instance.SendEvent("msgType","paramType");
+			GUIManager.Instance.ShowGUI("MainPage");
+			AudioManager.Instance.PlaySound("GameMusic");
+			PoolManager.Instance.Spawn(new GameObject("Arrow"));
+			LevelManager.Instance.StartLevel();
+			GameManager.Instance.GameOver();
+			SaveManager.Instance.Save();
 		}
 	}
 }
