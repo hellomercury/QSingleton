@@ -1,5 +1,7 @@
 # QSingleton
-Graceful Unity3D C# Singleton Implement ToolKit 
+Graceful Unity3D C# singleton implement toolkit.
+
+It make everything to singleton gracefully!
 
 #### Feature:
 
