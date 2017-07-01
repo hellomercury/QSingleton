@@ -5,8 +5,8 @@ It make everything to singleton gracefully!
 
 #### Feature:
 
-- C#/MonoBehaviour Singleton Implement Tool
-- Get property method get singleton
+- C#/MonoBehaviour Class Singleton Implement Tool
+- Get property method to implement singleton
 
 #### Quick Start:
 
