@@ -51,7 +51,7 @@ You will see result:
 
 #### Contact:
 
-* liangxiegame@163.com
+* liangxiegame@163.com ,if you have any idea or discussion about QSingleton,mail me now!
 
 #### Support Projects:
 
