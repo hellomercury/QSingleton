@@ -1,0 +1,1 @@
+run Assets/QSingleton/Example’s scene
