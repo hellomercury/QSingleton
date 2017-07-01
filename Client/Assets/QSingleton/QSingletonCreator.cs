@@ -58,6 +58,7 @@ namespace QFramework
 			if (instance == null && Application.isPlaying)
             {
                 instance = GameObject.FindObjectOfType(typeof(T)) as T;
+	            
                 if (instance == null)
                 {
                     MemberInfo info = typeof(T);
